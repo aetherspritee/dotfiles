@@ -1,0 +1,249 @@
+#+TITLE: MY DOOM CONFIG (VERY COOL)(KAWAII)
+#+PROPERTY: header-args :tangle config.el
+
+* DEFAULT DOOM SETTINGS
+#+begin_src emacs-lisp
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets.
+(setq user-full-name "John Doe"
+      user-mail-address "john@doe.com")
+
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; are the three important ones:
+;;
+;; + `doom-font'
+;; + `doom-variable-pitch-font'
+;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;;
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two:
+ (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
+       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-gruvbox)
+
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/Stuff/Orga")
+
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type t)
+
+
+#+end_src
+
+* PRETTIFY ORG MODE
+#+begin_src emacs-lisp
+(setq
+    org-superstar-headline-bullets-list '("⁖" "◉" "✸" "○" "✿" )
+    )
+
+(setq org-ellipsis " ▼ ")
+
+(setq org-fancy-priorities-list '("卑" "" ""))
+
+(defun my/org-mode/load-prettify-symbols ()
+  (interactive)
+  (setq prettify-symbols-alist
+        (mapcan (lambda (x) (list x (cons (upcase (car x)) (cdr x))))
+                '(("[ ]" .  "")
+                  ("[X]" . "" )
+                  ("[-]" . "" )
+                  ("lambda" . "ﬦ")
+                  ("#+begin_src" . "")
+                  ("#+end_src" . "")
+                  ("#+begin_example" . "")
+                  ("#+end_example" . "")
+                  ("#+begin_quote" . "")
+                  ("#+end_quote" . "")
+                  ("TODO" . "")
+                  ("DONE" . "")
+                  ("HOLD" . "")
+                  ("STRT" . ""))
+                )
+        )
+  )
+
+(setq org-hide-emphasis-markers t)
+
+(add-hook! 'org-mode-hook
+           #'+org-pretty-mode )
+
+(define-globalized-minor-mode global-prettify-symbols-mode prettify-symbols-mode
+  (lambda () (prettify-symbols-mode 1)))
+(global-prettify-symbols-mode 1)
+
+(add-hook! 'org-mode-hook
+           #'my/org-mode/load-prettify-symbols )
+
+(after! org
+  (custom-set-faces!
+    '(org-document-title :height 1.4)
+    '(org-level-1 :inherit outline-1 :weight bold :height 1.15)
+    '(org-level-2 :inherit outline-2 :weight bold :height 1.05)
+    '(org-level-3 :inherit outline-3 :weight semi-bold :height 1.05)
+    '(org-level-4 :inherit outline-4 :weight regular :height 1.0)
+    '(org-level-5 :inherit outline-5 :weight semi-bold :height 1.02)
+    '(org-level-6 :inherit outline-6 :weight semi-bold :height 1.01)
+    '(org-level-7 :inherit outline-7 :weight semi-bold)
+    '(org-level-8 :inherit outline-8 :weight semi-bold)))
+
+(setq org-image-actual-width nil)
+
+#+end_src
+
+* RAINBOW MODE ALWAYS ON
+#+begin_src emacs-lisp
+(define-globalized-minor-mode global-rainbow-mode rainbow-mode
+  (lambda () (rainbow-mode 1)))
+(global-rainbow-mode 1 )
+
+#+end_src
+
+* TREEMACS CONFIG
+#+begin_src emacs-lisp
+;(add-hook 'window-setup-hook #'treemacs 'append)
+(setq doom-themes-treemacs-theme "doom-colors")
+
+#+end_src
+
+* CUSTOM KEYBINDS (RETARD EDITION)(GONE WRONG)
+#+begin_src emacs-lisp
+(map! :leader
+      :desc "Switch to left window"
+      "<left>" #'evil-window-left)
+
+(map! :leader
+      :desc "Switch to right window"
+      "<right>" #'evil-window-right)
+
+(map! :leader
+      :desc "Switch to up window"
+      "<up>" #'evil-window-up)
+
+(map! :leader
+      :desc "Switch to down window"
+      "<down>" #'evil-window-down)
+
+(map! :leader
+      :desc "Switch to up buffer"
+      "w <up>" #'+evil/window-move-up)
+
+(map! :leader
+      :desc "Switch to up buffer"
+      "w <down>" #'+evil/window-move-down)
+
+(map! :leader
+      :desc "Switch to up buffer"
+      "w <left>" #'+evil/window-move-left)
+
+(map! :leader
+      :desc "Switch to up buffer"
+      "w <right>" #'+evil/window-move-right)
+
+(map! :leader
+      :desc "Hydra Window Resize"
+      "r" #'+hydra/window-nav/body)
+
+(map! :leader
+      :desc "Dashboard"
+      "H" #'dashboard-refresh-buffer)
+
+(map! :leader
+      :desc "Calendar"
+      "C" #'=calendar)
+
+#+end_src
+
+* ORG-JOURNAL (SANE EDITION)(ACTUAL NORMAL DATE FORMAT EDITION)
+#+begin_src emacs-lisp
+(setq org-journal-date-prefix "#+TITLE: "
+      org-journal-time-prefix "* "
+      org-journal-date-format "%a, %d-%m-%Y"
+      org-journal-file-format "%d-%m-%Y.org")
+
+#+end_src
+
+* MODELINE EXTRAS
+#+begin_src emacs-lisp
+(setq doom-modeline-icon t)
+(setq doom-modeline-modal-icon t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+(setq doom-modeline-persp-name t)
+
+#+end_src
+
+* CUSTOM DASHBOARD (SLOW AS FUCK EDITION)(SPEEDRUN NO%)
+#+begin_src emacs-lisp
+(use-package dashboard
+  :ensure t
+  :init
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-banner-logo-title " Dont fuck it up man! ")
+  (setq dashboard-buffer-name "Void")
+  (setq dashboard-page-separator "\n\f\n")
+  (setq dashboard-startup-banner "~/zerotwo.gif")
+  (setq dashboard-image-banner-max-height 700)
+  (setq dashboard-image-banner-max-width 700)
+  (setq dashboard-center-content t)
+  (setq dashboard-init-info "🌻")
+  (setq dashboard-footer-messages '("-"))
+  (setq dashboard-footer-icon (all-the-icons-wicon "tornado"
+                                                     :height 1.1
+                                                     :v-adjust -0.05
+                                                     :face 'font-lock-keyword-face))
+  (setq dashboard-items '((recents . 5)
+                          (bookmarks . 5)
+                          (agenda . 5)))
+  :config
+  (dashboard-setup-startup-hook)
+  (dashboard-modify-heading-icons '((recents . "file-text")
+                                    (bookmarks . "book"))))
+
+#+end_src
+
+* TREE SITTER (WANNABE CODER EDITION)(KALI LINUX IP HACK)
+#+begin_src emacs-lisp
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+
+#+end_src
+
+* HYDRA CONFIG
+Just a few shortcuts to resize splits
+#+begin_src emacs-lisp
+(defhydra hydra-zoom (global-map "<C-R>")
+      "splitter"
+      ("<Up>" hydra-move-splitter-up)
+      ("<Down>" hydra-move-splitter-down)
+      ("<Right>" hydra-move-splitter-right)
+      ("<Left>" hydra-move-splitter-left))
+
+#+end_src
+
+* MATLAB (PROPRIETARY SOFTWARE CUCK EDITION)(MATRIX(MATRIX(MATRIX)))
+#+begin_src emacs-lisp
+(after! all-the-icons
+  (setcdr (assoc "m" all-the-icons-extension-icon-alist)
+          (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
+
+ (autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
+ (add-to-list
+  'auto-mode-alist
+  '("\\.m$" . matlab-mode))
+ (setq matlab-indent-function t)
+ (setq matlab-shell-command "matlab")
+
+#+end_src
+
+* DEBUGGING (NOT WORKING EDITION)(WTF AM I DOING EDITION)
+#+begin_src emacs-lisp
+
+#+end_src
