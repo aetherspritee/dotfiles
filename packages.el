@@ -5,10 +5,14 @@
 ;; on the command line, then restart Emacs for the changes to take effect -- or
 ;; use 'M-x doom/reload'.
 
-(package! dashboard)
-(package! page-break-lines)
 (package! tree-sitter)
 (package! tree-sitter-langs)
+;;(package! svg-lib)
+(package! svg-tag-mode)
+(package! org-sidebar)
+(package! ebib)
+(package! org-super-agenda)
+
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)

@@ -1,33 +1,79 @@
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
+;; Place your private configuration here! Remember, you do not need to run 'doom
+;; sync' after modifying this file!
+
+
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets. It is optional.
+(setq user-full-name "Dustin Schauten"
+      user-mail-address "schautendustin@gmail.com")
+
+;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;; - `doom-font' -- the primary font to use
+;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
+;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
+;; - `doom-unicode-font' -- for unicode glyphs
+;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 ;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
- (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
-       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+;; See 'C-h v doom-font' for documentation and more examples of what they
+;; accept. For example:
+;;
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 11.0 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 13))
+;;
+;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
+;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
+;; refresh your font settings. If Emacs still can't find your font, it likely
+;; wasn't installed correctly. Font issues are rarely Doom issues!
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-gruvbox)
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Stuff/Orga")
+(setq doom-theme 'my-dracula)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
+
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/Dropbox/Stuff/Orga/")
+
+
+;; Whenever you reconfigure a package, make sure to wrap your config in an
+;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
+;;
+;;   (after! PACKAGE
+;;     (setq x y))
+;;
+;; The exceptions to this rule:
+;;
+;;   - Setting file/directory variables (like `org-directory')
+;;   - Setting variables which explicitly tell you to set them before their
+;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
+;;   - Setting doom variables (which start with 'doom-' or '+').
+;;
+;; Here are some additional functions/macros that will help you configure Doom.
+;;
+;; - `load!' for loading external *.el files relative to this one
+;; - `use-package!' for configuring packages
+;; - `after!' for running code after a package has loaded
+;; - `add-load-path!' for adding directories to the `load-path', relative to
+;;   this file. Emacs searches the `load-path' when you load packages with
+;;   `require' or `use-package'.
+;; - `map!' for binding new keys
+;;
+;; To get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+;; This will open documentation for it, including demos of how they are used.
+;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
+;; etc).
+;;
+;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+;; they are implemented.
 
 (setq
     org-superstar-headline-bullets-list '("⁖" "◉" "✸" "○" "✿" )
@@ -35,7 +81,7 @@
 
 (setq org-ellipsis " ▼ ")
 
-(setq org-fancy-priorities-list '("卑" "" ""))
+;;(setq org-fancy-priorities-list '("卑" "" ""))
 
 (defun my/org-mode/load-prettify-symbols ()
   (interactive)
@@ -51,10 +97,11 @@
                   ("#+end_example" . "")
                   ("#+begin_quote" . "")
                   ("#+end_quote" . "")
-                  ("TODO" . "")
-                  ("DONE" . "")
-                  ("HOLD" . "")
-                  ("STRT" . ""))
+                  ;("TODO" . "")
+                  ;("DONE" . "")
+                  ;("HOLD" . "")
+                  ;("STRT" . "")
+                  )
                 )
         )
   )
@@ -71,26 +118,21 @@
 (add-hook! 'org-mode-hook
            #'my/org-mode/load-prettify-symbols )
 
-(after! org
-  (custom-set-faces!
-    '(org-document-title :height 1.4)
-    '(org-level-1 :inherit outline-1 :weight bold :height 1.15)
-    '(org-level-2 :inherit outline-2 :weight bold :height 1.05)
-    '(org-level-3 :inherit outline-3 :weight semi-bold :height 1.05)
-    '(org-level-4 :inherit outline-4 :weight regular :height 1.0)
-    '(org-level-5 :inherit outline-5 :weight semi-bold :height 1.02)
-    '(org-level-6 :inherit outline-6 :weight semi-bold :height 1.01)
-    '(org-level-7 :inherit outline-7 :weight semi-bold)
-    '(org-level-8 :inherit outline-8 :weight semi-bold)))
-
 (setq org-image-actual-width nil)
 
-(define-globalized-minor-mode global-rainbow-mode rainbow-mode
-  (lambda () (rainbow-mode 1)))
-(global-rainbow-mode 1 )
+;;(define-globalized-minor-mode global-rainbow-mode rainbow-mode
+;;  (lambda () (rainbow-mode 1)))
+;;(global-rainbow-mode 1 )
 
 ;(add-hook 'window-setup-hook #'treemacs 'append)
-(setq doom-themes-treemacs-theme "doom-colors")
+;(setq doom-themes-treemacs-theme "kaolin-treemacs-theme")
+(setq neo-theme 'icons)
+
+;(use-package kaolin-themes
+;  :config
+;  (load-theme 'kaolin-dark t)
+;  (kaolin-treemacs-theme))
+
 
 (map! :leader
       :desc "Switch to left window"
@@ -133,8 +175,20 @@
       "H" #'dashboard-refresh-buffer)
 
 (map! :leader
-      :desc "Calendar"
-      "C" #'=calendar)
+      :desc "Capture"
+      "C" #'counsel-org-capture)
+
+(map! :leader
+      :desc "Rainbow mode"
+      "t R" #'rainbow-mode)
+
+(map! :leader
+      :desc "LSP Doc-View"
+      "d" #'lsp-ui-doc-show)
+
+(map! :leader
+      :desc "comment"
+      "k" #'comment-dwin)
 
 (setq org-journal-date-prefix "#+TITLE: "
       org-journal-time-prefix "* "
@@ -147,31 +201,8 @@
 (setq doom-modeline-major-mode-color-icon t)
 (setq doom-modeline-persp-name t)
 
-(use-package dashboard
-  :ensure t
-  :init
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-banner-logo-title " Dont fuck it up man! ")
-  (setq dashboard-buffer-name "Void")
-  (setq dashboard-page-separator "\n\f\n")
-  (setq dashboard-startup-banner "~/zerotwo.gif")
-  (setq dashboard-image-banner-max-height 700)
-  (setq dashboard-image-banner-max-width 700)
-  (setq dashboard-center-content t)
-  (setq dashboard-init-info "🌻")
-  (setq dashboard-footer-messages '("-"))
-  (setq dashboard-footer-icon (all-the-icons-wicon "tornado"
-                                                     :height 1.1
-                                                     :v-adjust -0.05
-                                                     :face 'font-lock-keyword-face))
-  (setq dashboard-items '((recents . 5)
-                          (bookmarks . 5)
-                          (agenda . 5)))
-  :config
-  (dashboard-setup-startup-hook)
-  (dashboard-modify-heading-icons '((recents . "file-text")
-                                    (bookmarks . "book"))))
+(setq org-roam-directory "~/Dropbox/Stuff/Orga/Roam")
+
 
 (global-tree-sitter-mode)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
@@ -187,11 +218,170 @@
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
+; TODO: Download Matlab mode via 'M-x' list-packages
  (autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
  (add-to-list
   'auto-mode-alist
   '("\\.m$" . matlab-mode))
  (setq matlab-indent-function t)
- (setq matlab-shell-command "matlab")
+(setq matlab-shell-command "matlab")
 
+(setq fancy-splash-image "~/Pictures/emacs-logo.png")
+
+
+(setq mini-frame-show-parameters
+        `((left . 0.5)
+          (top . 1.0)
+          (width . 1.0)
+          (height . 5)
+          (left-fringe . 12)
+          (right-fringe .12)
+          (child-frame-border-width . 0)
+          (internal-border-width . 0)))
+
+
+(require 'svg-lib)
+(require 'svg-tag-mode)
+(require 'color)
+
+(defconst date-re "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}")
+(defconst time-re "[0-9]\\{2\\}:[0-9]\\{2\\}")
+(defconst day-re "[A-Za-z]\\{3\\}")
+
+(defun svg-progress-percent (value)
+  (svg-image (svg-lib-concat
+              (svg-lib-progress-bar (/ (string-to-number value) 100.0)
+                                nil :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+              (svg-lib-tag (concat value "%")
+                           nil :stroke 0 :margin 0)) :ascent 'center))
+
+(defun svg-progress-count (value)
+  (let* ((seq (mapcar #'string-to-number (split-string value "/")))
+         (count (float (car seq)))
+         (total (float (cadr seq))))
+  (svg-image (svg-lib-concat
+              (svg-lib-progress-bar (/ count total) nil
+                                    :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+              (svg-lib-tag value nil
+                           :stroke 0 :margin 0)) :ascent 'center)))
+
+(setq svg-tag-tags '(
+                     (":UNI:" . ((lambda (tag) (svg-tag-make "Uni" :face 'shadow))))
+                     (":IMPROV:" . ((lambda (tag) (svg-tag-make "Improv"))))
+                     (":PROD:" . ((lambda (tag) (svg-tag-make "Prod"))))
+                     ("HOLD" . ((lambda (tag) (svg-tag-make "HOLD" :face 'transient-pink))))
+                     ("STRT" . ((lambda (tag) (svg-tag-make "START" :inverse t :face '+org-todo-cancel))))
+                     (":FUN:" . ((lambda (tag) (svg-tag-make "Fun" :face 'warning))))
+                     (":CODE:" . ((lambda (tag) (svg-tag-make "Code" :face 'match))))
+                     (":IMP:" . ((lambda (tag) (svg-tag-make "Important" :inverse t))))
+                     (":JP:" . ((lambda (tag) (svg-tag-make "JP" :inverse t :face 'org-headline-todo))))
+                     ("DONE" . ((lambda (tag) (svg-tag-make "DONE" :face 'fringe))))
+                     ("TODO" . ((lambda (tag) (svg-tag-make "TODO" :inverse t :face 'org-level-1))))
+                     ("WORK" . ((lambda (tag) (svg-tag-make "WORK" :inverse t :face 'match))))
+                     ("PRCS" . ((lambda (tag) (svg-tag-make "PRCS" :inverse t :face 'warning))))
+                     ("CURR" . ((lambda (tag) (svg-tag-make "CURR" :face '+org-todo-cancel))))
+                     ("PROJ" . ((lambda (tag) (svg-tag-make "PROJ" :inverse t :face '+org-todo-project))))
+                     ("\\[#[A-Z]\\]" . ( (lambda (tag) (svg-tag-make tag :inverse t :face '+org-todo-cancel :beg 2 :end -1 :margin 0))))
+                     ;;(,(format "\\(<%s>\\)" date-re) . ((lambda (tag) (svg-tag-make tag :beg 1 :end -1 :margin 0))))
+                     ;;(,(format "\\(<%s *\\)%s>" date-re time-re) . ((lambda (tag) (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0))))
+                     ;;(,(format "<%s *\\(%s>\\)" date-re time-re) . ((lambda (tag) (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0))))
+
+                     ))
+                     ;;("\\(\\[[0-9]\\{1,3\\}%\\]\\)" . ((lambda (tag) (svg-progress-percent (substring tag 1 -2)))))
+                     ;;("\\(\\[[0-9]+/[0-9]+\\]\\)" . ((lambda (tag) (svg-progress-count (substring tag 1 -1)))))
+
+                     ;;(,(format "\\(\\[%s\\]\\)" date-re) . ((lambda (tag) (svg-tag-make tag :beg 1 :end -1 :margin 0 :face 'org-date))))
+                     ;;(,(format "\\(\\[%s *\\)%s\\]" date-re time-re) . ((lambda (tag) (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0 :face 'org-date))))
+                     ;;(,(format "\\[%s *\\(%s\\]\\)" date-re time-re) . ((lambda (tag) (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0 :face 'org-date))))
+(add-hook 'org-mode-hook
+          #'svg-tag-mode)
+(add-hook 'org-agenda-mode-hook
+          #'svg-tag-mode)
+
+(defun doom-dashboard-widget-head-text ()
+  (insert
+   "\n test"
+   (+doom-dashboard--center
+    (- +doom-dashboard--width 2)
+
+   "\n")))
+
+(defvar +doom-dashboard-functions
+  '(doom-dashboard-widget-banner
+    doom-dashboard-widget-head-text
+    doom-dashboard-widget-shortmenu
+    doom-dashboard-widget-loaded
+    doom-dashboard-widget-footer)
+  "List of widget functions to run in the dashboard buffer to construct the
+dashboard. These functions take no arguments and the dashboard buffer is current
+while they run.")
+
+(after! org
+(setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           "CURR(c)"                             ; A task that needs doing & is ready to do
+           "PROJ(p)"  ; A project, which usually contains other tasks
+           "WORK(u)"
+           "PRCS(v)"                             ; A recurring task
+           "STRT(s)"  ; A task that is in progress
+           "WAIT(w)"  ; Something external is holding up this task
+           "HOLD(h)"  ; This task is paused/on hold because of me
+           "IDEA(i)"  ; An unconfirmed and unapproved task or notion
+           "|"
+           "DONE(d)"  ; Task successfully completed
+           "KILL(k)") ; Task was cancelled, aborted or is no longer applicable
+          (sequence
+           "[ ](T)"   ; A task that needs doing
+           "[-](S)"   ; Task is in progress
+           "[?](W)"   ; Task is being held up or paused
+           "|"
+           "[X](D)")  ; Task was completed
+          (sequence
+           "|"
+           "OKAY(o)"
+           "YES(y)"
+           "NO(n)"))
+        org-todo-keyword-faces
+        '(("[-]"  . +org-todo-active)
+          ("STRT" . +org-todo-active)
+          ("[?]"  . +org-todo-onhold)
+          ("WAIT" . +org-todo-onhold)
+          ("HOLD" . +org-todo-onhold)
+          ("PROJ" . +org-todo-project)
+          ("NO"   . +org-todo-cancel)
+          ("KILL" . +org-todo-cancel))))
+
+
+
+(add-load-path! "~/.doom.d/lisp/setup-splash.el")
+
+(setq org-agenda-custom-commands
+      '(
+        ("D" "Meine Agenda"
+         ((todo "CURR"
+                ((org-agenda-overriding-header "🕜 Current projects\n")))
+          (agenda " "
+                  (
+                   (org-agenda-overriding-header "⚠ Day\n")
+                   (org-agenda-span 1)
+                   (org-agenda-start-day "+0d")
+                   (org-deadline-warning-days 0)
+                   (org-agenda-day-face-function (lambda (date) 'org-agenda-date))
+                   ))
+          (agenda " "
+                  ((org-agenda-overriding-header "🗓 Tomorrow\n")
+                  (org-agenda-start-day "+1d")
+                  (org-agenda-span 1)
+                  (org-agenda-show-all-dates nil)
+                  ))
+          (todo "PROJ"
+                ((org-agenda-overriding-header "❇ Projects i want to do :]\n")))
+          (agenda " "
+                  ((org-agenda-overriding-header "🗓 ÜBERMORGEN\n")
+                  (org-agenda-start-day "+2d")
+                  (org-agenda-span 1)
+                  (org-agenda-show-all-dates nil)
+                  ))))
+        ))
 
