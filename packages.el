@@ -12,8 +12,15 @@
 (package! org-sidebar)
 (package! ebib)
 (package! org-super-agenda)
-
-
+(package! nyan-mode)
+(package! parrot)
+(package! corfu)
+(package! corfu-doc)
+(package! dap-mode)
+(package! org-modern)
+(package! doct
+  :recipe (:host github :repo "progfolio/doct")
+  :pin "6cf1943ad7")
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 

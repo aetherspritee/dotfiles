@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 11.0 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 13))
+      doom-variable-pitch-font (font-spec :family "Hack Nerd Font" :size 15))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -188,7 +188,11 @@
 
 (map! :leader
       :desc "comment"
-      "k" #'comment-dwin)
+      "k" #'comment-dwim)
+
+(map! :leader
+      :desc "daily entry"
+      "n r D" #'org-roam-dailies-capture-today)
 
 (setq org-journal-date-prefix "#+TITLE: "
       org-journal-time-prefix "* "
@@ -363,6 +367,15 @@ while they run.")
                 ((org-agenda-overriding-header "🕜 Current projects\n")))
           (agenda " "
                   (
+                   (org-agenda-overriding-header "⚠ SOOOON\n")
+                   (org-agenda-span 30)
+                   (org-agenda-start-day "+0d")
+                   (org-agenda-show-all-dates nil)
+                   (org-agenda-entry-types '(:deadline))
+                   (org-deadline-warning-days 0)
+                   ))
+          (agenda " "
+                  (
                    (org-agenda-overriding-header "⚠ Day\n")
                    (org-agenda-span 1)
                    (org-agenda-start-day "+0d")
@@ -382,6 +395,76 @@ while they run.")
                   (org-agenda-start-day "+2d")
                   (org-agenda-span 1)
                   (org-agenda-show-all-dates nil)
-                  ))))
+                  ))
+          ))
         ))
 
+(setq +org-capture-notes-file "inbox.org")
+
+(after! org-capture
+    (setq org-capture-templates
+          (doct `((,(format "%s\ttodo item" (all-the-icons-octicon "checklist" :face 'all-the-icons-dpink :v-adjust 0.01))
+                   :keys "t"
+                   :file +org-capture-todo-file
+                   :prepend t
+                   :headline "Inbox"
+                   :type entry
+                   :template ("* TODO %?"
+                              "SCHEDULED: %^T")
+                   )
+                  (,(format "%s\tinbox item" (all-the-icons-faicon "sticky-note-o" :face 'all-the-icons-purple :v-adjust 0.01))
+                   :keys "i"
+                   :file +org-capture-notes-file
+                   :prepend t
+                   :type entry
+                   :template ("* %?")
+                   )
+                  (,(format "%s\tproject idea" (all-the-icons-material "library_books" :face 'all-the-icons-orange :v-adjust 0.01))
+                   :keys "p"
+                   :file +org-capture-projects-file
+                   :prepend t
+                   :headline "PR0JECTS"
+                   :type entry
+                   :template ("* PROJ %^{Project name} [/] :%^{Tag|CODE|FUN|IMPROV}:"
+                              "** [ ] %?")
+                   )
+                  (, (format "%s\trandom thought" (all-the-icons-material "bubble_chart" :face 'all-the-icons-purple :v-adjust 0.01))
+                     :keys "r"
+                     :file "~/Dropbox/Stuff/Orga/Roam/20220306201250-random_thoughts.org"
+                     :prepend t
+                     :type entry
+                     :template ("* %?"
+                                "%U"))
+                              ))))
+
+(setq display-time-day-and-date t)
+(setq display-time-24hr-format t)
+(setq display-time-default-load-average nil)
+(setq display-time-load-average-threshold nil)
+(nyan-mode 1)
+(parrot-mode)
+(parrot-set-parrot-type 'science)
+
+(setq lsp-julia-package-dir nil)
+(setq lsp-julia-default-environment "~/.julia/environments/v1.7")
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry "* %<%H:%M>: %?"
+         :if-new (file+head "%<%d-%m-%Y>.org" "#+title: %<%d-%m-%Y>\n")))
+      )
+
+(setq org-roam-capture-templates
+      '(("d" "default" plain
+         "%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+         :unnarrowed t)
+      ("m" "master" plain (file "~/Dropbox/Stuff/Orga/Roam/test/templates/stuff.org")
+         :target (file+head "master/%<%Y%m%d%H%M%S>-${slug}.org"
+         "#+title: ${title}\n") :unnarrowed t)
+      ("u" "uni" plain
+       "%?"
+       :target (file+head "uni/%<%Y%m%d%H%M%S>-${slug}.org"
+       "#+title: ${title}\n") :unnarrowed t)))
+
+(setq lsp-enable-file-watchers nil)
+(setq org-capture-bookmark nil)
