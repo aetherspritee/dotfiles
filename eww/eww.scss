@@ -1,0 +1,325 @@
+
+* {
+    font-family: Geist Mono;
+}
+
+/* $bg-color: #2e2e38; */
+$bg-color: #282828;
+$box-color: #000000;
+$box-color2: #32302f;
+$fg-color: #EBDBB2;
+$accent-color: #b8bb26;
+$magenta1: #b16286;
+$magenta2: #d3869b;
+$yellow1: #d79921;
+$yellow2: #fabd2f;
+
+
+/* BAR */
+.bar {
+   background-color: $bg-color;
+	// border-radius: 20;
+    // background-color: #282c34;
+}
+
+.left {
+    margin: 0 6px;
+}
+
+.right {
+    margin: 0 12px;
+}
+
+.rounded-grey-box {
+    background-color: $box-color;
+    border-radius: 0px;
+    margin: 6px 0;
+    padding: 3px;
+}
+
+.rounded-grey-box-system-menu {
+
+    background-color: $magenta1;
+    border-radius: 5px;
+    margin: 8px 0;
+    padding: 0 6px;
+    font-size: 24px;
+    // padding-right: 12px;
+    padding-top: 2px;
+
+}
+
+.layout {
+    color: $box-color;
+}
+
+
+// .music {
+    // padding: 10px;
+    // font-size: 15px;
+    // // background-color: $box-color;
+    // border-radius: 50px;
+    // margin: 8px 0;
+	// padding-left: 20px;
+	// padding-right: 20px;
+// }
+
+.metric-icon {
+    font-size: 18px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 8px 0;
+	background-color: $box-color2;
+	// background-color: $yellow1;
+	border-radius: 5;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+
+.title2 {
+    font-size: 17px;
+    font-weight: bold;
+    // margin: 8px 0;
+	background-color: $box-color2;
+    background-image: url("images/favpic.jpg");
+    background-size: cover;
+    // height: 25px;
+    // width: 25px;
+	// background-color: $yellow1;
+    border-radius: 5;
+	// padding-left: 18px;
+	// padding-right: 18px;
+    // background-position: center;
+
+}
+
+.time {
+    // font-size: 14px;
+    // font-weight: bold;
+    margin: 8px 8px;
+	background-color: $box-color2;
+	// background-color: $yellow1;
+	border-radius: 5;
+	padding-right: 20px;
+    color: $fg-color;
+}
+
+.hour {
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 4px;
+}
+
+.date {
+    padding-top: 5px;
+    font-size: 15px;
+}
+
+.test {
+    color: $accent-color;
+    background-color: $box-color;
+    border-radius: 5;
+}
+
+.testb {
+    color: $fg-color;
+    font-size: 16;
+    margin: 8px;
+}
+
+.sys-infos {
+    margin: 0 12px;
+}
+
+.metric-label {
+    margin: 0 6px;
+    margin-left: 12px;
+}
+
+.metric-progress {
+    padding: 2px 0;
+
+    trough {
+        background-color: $box-color;
+        min-height: 10px;
+        min-width: 80px;
+        border-radius: 5;
+
+        progress {
+            background-color: $accent-color;
+            border-radius: 10px;
+            min-height: 6px;
+            margin: 0 2px;
+        }
+    }
+}
+
+.info-box {
+    padding: 10px 0;
+}
+
+/* SYSTEM MENU */
+
+.sysmenu {
+    border-radius: 5;
+    background-color: $bg-color;
+    // background-image: url("images/favpic.jpg");
+}
+
+.sysmenu-topbox {
+    margin: 12px;
+}
+
+.sysmenu-user {
+    background-color: $box-color2;
+    border-radius: 5;
+    padding: 4px;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin: 8px 8px;
+}
+
+// .sysmenu-avatar {
+//     min-height: 14px;
+//     min-width: 14px;
+//     background-size: cover;
+//     border-radius: 12px;
+//     margin-right: 1px;
+// }
+
+.sysmenu-powermenu {
+    padding-top: 3px;
+    padding-bottom: 2px;
+}
+
+.powermenu-button {
+    background-color: $box-color2;
+    border-radius: 5;
+    // min-width: 32px;
+    // min-height: 32px;
+    font-size: 24px;
+
+
+    &.poweroff {
+        color: $accent-color;
+    }
+}
+
+.sysmenu-sliders {
+    margin: 12px 18px;
+
+    scale {
+        // all: initial;
+        margin: 0 12px;
+
+        trough {
+            background-color: $box-color;
+            min-width: 300px;
+            border-radius: 5;
+            min-height: 16px;
+            padding: 0;
+
+            & highlight {
+                background-color: $accent-color;
+                border-radius: 12px;
+                margin: 4px;
+            }
+
+            & slider {
+                background-color: transparent;
+                min-height: 16px;
+                min-width: 16px;
+                border-radius: 100%;
+                margin-left: -7px;
+            }
+        }
+    }
+
+    button {
+        min-width: 32px;
+        min-height: 32px;
+        font-size: 28px;
+        color: $fg-color;
+    }
+}
+
+.workspaces{
+	background-color: $box-color2;
+	border-radius: 5;
+	margin-left: 20px;
+	margin-right: 20px;
+    margin: 8px 0;
+
+}
+
+.active-workspace {
+	background-color: $accent-color;
+	border-radius: 5;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.svg-tag {
+    padding: 6px 6px;
+    color: #114600;
+}
+
+.svg-tag2 {
+
+}
+
+.svg-tag3 {
+    border-radius: 50px;
+}
+
+
+.sysmenu-user2 {
+	border-radius: 30%;
+}
+.metric_control scale trough {
+  all: unset;
+  background-color: $box-color;
+  border-radius: 50px;
+  min-height: 6px;
+  min-width: 110px;
+  margin-top: 13px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.metric_control scale trough highlight {
+  all: unset;
+  background-color: $accent-color;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.musicbutton {
+    background-color: $box-color2;
+    min-width: 120px;
+	border-radius: 5;
+    margin: 8px 0;
+}
+
+.music_backgroudn {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 8px 0;
+	background-color: $box-color2;
+    min-width: 120px;
+	border-radius: 5;
+	padding-left: 20px;
+	padding-right: 20px;
+    text-shadow: 1px 1px #000000;
+}
+
+.cal {
+  color: $fg-color;
+  padding: 5px;
+  padding-bottom: 1px;
+  border-radius: 5;
+}

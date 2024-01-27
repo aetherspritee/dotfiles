@@ -1,0 +1,96 @@
+(defwindow lolpopup :monitor 0
+           :geometry (geometry :x "-660px"
+                               :y "70px"
+                               :height "50px"
+                               :anchor "top center")
+           :stacking "fg"
+           :wm-ignore true
+  (box :orientation "v"
+       :space-evenly false
+    (popup)
+    ))
+
+(defpoll TEAMA1 :interval "1m"
+         "scripts/parse_schedule.py --logo1 2")
+
+(defpoll TEAMB1 :interval "1m"
+         "scripts/parse_schedule.py --logo2 2")
+
+(defpoll MATCH_TIME1 :interval "1m"
+         "scripts/parse_schedule.py --time 2")
+
+(defpoll TEAMA2 :interval "1m"
+         "scripts/parse_schedule.py --logo1 3")
+
+(defpoll TEAMB2 :interval "1m"
+         "scripts/parse_schedule.py --logo2 3")
+
+(defpoll MATCH_TIME2 :interval "1m"
+         "scripts/parse_schedule.py --time 3")
+
+(defpoll TEAMA3 :interval "1m"
+         "scripts/parse_schedule.py --logo1 4")
+
+(defpoll TEAMB3 :interval "1m"
+         "scripts/parse_schedule.py --logo2 4")
+
+(defpoll MATCH_TIME3 :interval "1m"
+         "scripts/parse_schedule.py --time 4")
+
+(defpoll TEAMA4 :interval "1m"
+         "scripts/parse_schedule.py --logo1 5")
+
+(defpoll TEAMB4 :interval "1m"
+         "scripts/parse_schedule.py --logo2 5")
+
+(defpoll MATCH_TIME4 :interval "1m"
+         "scripts/parse_schedule.py --time 5")
+
+(defpoll TEAMA5 :interval "1m"
+         "scripts/parse_schedule.py --logo1 6")
+
+(defpoll TEAMB5 :interval "1m"
+         "scripts/parse_schedule.py --logo2 6")
+
+(defpoll MATCH_TIME5 :interval "1m"
+         "scripts/parse_schedule.py --time 6")
+
+
+(defwidget popup []
+  (box :class "lol_popup" :orientation "v" :valign "center" :space-evenly false
+    (box
+    (image :class "svg-tag" :path "${TEAMA1}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text ":")
+    (image :class "svg-tag" :path "${TEAMB1}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text "in ${MATCH_TIME1}"))
+
+    (box
+    (image :class "svg-tag" :path "${TEAMA2}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text ":")
+    (image :class "svg-tag" :path "${TEAMB2}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text "in ${MATCH_TIME2}"))
+
+    (box
+    (image :class "svg-tag" :path "${TEAMA3}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text ":")
+    (image :class "svg-tag" :path "${TEAMB3}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text "in ${MATCH_TIME3}"))
+
+    (box
+    (image :class "svg-tag" :path "${TEAMA4}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text ":")
+    (image :class "svg-tag" :path "${TEAMB4}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text "in ${MATCH_TIME4}"))
+
+    (box
+    (image :class "svg-tag" :path "${TEAMA5}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text ":")
+    (image :class "svg-tag" :path "${TEAMB5}" :image-width "20" :image-height "20")
+    (label :limit-width 25 :text "in ${MATCH_TIME5}"))
+
+       )
+  )
+        ;;:valign "start"
+
+;; sound and brightness sliders
+

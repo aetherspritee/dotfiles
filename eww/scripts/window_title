@@ -1,0 +1,18 @@
+#!/bin/bash
+
+myid=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)
+
+test=$(xprop -id $myid _NET_WM_ICON | cut -f 2)
+
+xprop -id $myid -notype 32c _NET_WM_ICON |
+  perl -0777 -pe '@_=/\d+/g;
+    printf "P7\nWIDTH %d\nHEIGHT %d\nDEPTH 4\nMAXVAL 255\nTUPLTYPE RGB_ALPHA\nENDHDR\n", splice@_,0,2;
+    $_=pack "N*", @_;
+    s/(.)(...)/$2$1/gs' > "/home/yulivee/.config/eww/images/wm_icon.pam"
+convert "/home/yulivee/.config/eww/images/wm_icon.pam" "/home/yulivee/.config/eww/images/wm_icon.png"
+if [[ $? != 0 ]]; then
+  cp "/home/yulivee/.config/eww/images/application.png" "/home/yulivee/.config/eww/images/wm_icon.png"
+  exit 0
+fi
+
+echo "/home/yulivee/.config/eww/images/wm_icon.png"

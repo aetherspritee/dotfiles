@@ -1,0 +1,276 @@
+(defpoll UPGR_PACKAGES :interval "1h" "scripts/upgrades")
+
+(defvar cover_art "images/arch.png")
+(defpoll vol-num :interval "1s"
+  "scripts/volume")
+(deflisten workspace "scripts/workspaces")
+
+(defpoll MUSIC_PLAYING :interval "2s"
+  "scripts/music.sh --status")
+
+(defpoll CURR_MONTH :interval "6h"
+  "date +%m")
+
+(defpoll CURR_YEAR :interval "6h"
+  "date +%Y")
+
+(defpoll MUSIC_TITLE :interval "2s"
+  "scripts/music.sh --title")
+
+(defpoll MUSIC_ARTIST :interval "2s"
+  "scripts/music.sh --artist")
+
+(defpoll MUSIC_ART :interval "1s"
+  "scripts/music_cover.py")
+
+(defpoll MUSIC_POSITION :interval "2s"
+  "scripts/music.sh --position")
+
+(defpoll MUSIC_LOOP_STATUS :interval "2s"
+  "scripts/music.sh --loop_status")
+
+(defpoll LOGOA :interval "1m"
+  "scripts/parse_schedule.py --logo1 1")
+
+(defpoll LOGOB :interval "1m"
+  "scripts/parse_schedule.py --logo2 1")
+
+(defpoll MATCH_TIME :interval "1m"
+  "scripts/parse_schedule.py --time 1")
+
+(defwindow bar0 :monitor 0
+           :class "box"
+           :geometry (geometry :x "0%"
+                               :y "0px"
+                               :width "100%"
+                               :height "10px"
+                               :anchor "top center")
+           :stacking "bg"
+           :reserve (struts :distance "65px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+  (box :space-evenly true :class "bar"
+    (left)
+    (right)))
+
+(defwindow bar1 :monitor 1
+           :geometry (geometry :x "0%"
+                               :y "0%"
+                               :width "100%"
+                               :height "10px"
+                               :anchor "top center")
+           :stacking "fg"
+           :reserve (struts :distance "30px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+  (box :space-evenly false
+    (left)
+    (title)
+    (right)))
+
+;; Left module (tags and layout)
+
+(defwidget left []
+  (box :class "left" :halign "left" :space-evenly false :spacing 12 :hexpand true :vexpand false
+    (workspaces :names active-workspaces :current-idx current-workspace-index)(title)
+    (widget_music)
+    (lol_wrap)
+    ))
+
+;; Left module (tags and layout)
+
+;;(defwidget tags []
+;;  (literal :content {wm-tags}))
+
+(defwidget layout []
+  (box :class "layout" :valign "center" {wm-layout}))
+
+(defwidget workspaces [names current-idx]
+	(box
+		:class "workspaces"
+		:halign "start"
+		:hexpand false
+		:space-evenly true
+		:spacing "7"
+		(box
+			:class {replace(captures(names, "\"[0-9]\"")[captures(current-idx, "[0-9]")[0][0]][0], "\"", "") == "1" ? "active-workspace" : "regular"}
+            (image :class "svg-tag" :path "images/terminal.svg" :image-width "20" :image-height "20")
+            )
+
+		(box
+			:class {replace(captures(names, "\"[0-9]\"")[captures(current-idx, "[0-9]")[0][0]][0], "\"", "") == "2" ? "active-workspace" : "regular"}
+            (image :class "svg-tag" :path "images/browser.svg" :image-width "20" :image-height "20")
+            )
+		(box
+			:class {replace(captures(names, "\"[0-9]\"")[captures(current-idx, "[0-9]")[0][0]][0], "\"", "") == "3" ? "active-workspace" : "regular"}
+            (image :class "svg-tag" :path "images/code2.svg" :image-width "20" :image-height "20")
+            )
+		(box
+			:class {replace(captures(names, "\"[0-9]\"")[captures(current-idx, "[0-9]")[0][0]][0], "\"", "") == "4" ? "active-workspace" : "regular"}
+            (image :class "svg-tag" :path "images/studying.svg" :image-width "20" :image-height "20")
+            )
+		(box
+			:class {replace(captures(names, "\"[0-9]\"")[captures(current-idx, "[0-9]")[0][0]][0], "\"", "") == "5" ? "active-workspace" : "regular"}
+            (image :class "svg-tag" :path "images/plant.svg" :image-width "20" :image-height "20")
+            )
+		(box
+			:class {replace(captures(names, "\"[0-9]\"")[captures(current-idx, "[0-9]")[0][0]][0], "\"", "") == "6" ? "active-workspace" : "regular"}
+            (image :class "svg-tag" :path "images/ipod.svg" :image-width "20" :image-height "20")
+            )
+))
+
+
+; ..:: UTILITIES ::..
+
+(defwidget sep [] (box :hexpand false (label :class "sep" :text "|")))
+
+(deflisten active-workspaces :initial "N/A" "xprop -spy -root _NET_DESKTOP_NAMES")
+;(deflisten active-workspaces :initial "N/A" "'1','2'")
+(deflisten current-workspace-index :initial "N/A" `xprop -spy -root _NET_CURRENT_DESKTOP`)
+
+(defpoll xtitle :interval "1s" "scripts/getwin")
+(defpoll title_icon :interval "1s" "scripts/window_title")
+
+(defwidget title []
+(box :class "title" :space-evenly false
+ (image :class "svg-tag2" :path "${title_icon}" :image-width "20" :image-height "20")
+  (label :class "title"
+         :hexpand true
+         :limit-width 50
+	 :width 1
+         :wrap true
+         :text "${xtitle}")))
+
+;; Right modules
+
+(defwidget right []
+  (box :class "right" :halign "end" :space-evenly false :spacing 12
+    (cal_time)
+    (system-infos)
+    (system-menu )
+    ))
+
+(defwidget system-infos []
+  (box :class "sys-infos" :space-evenly false :spacing 6
+
+ (image :class "svg-tag" :path "images/volume.png" :image-width "20" :image-height "20")
+    (metric_control :class "metric_control" :value {vol-num} :onchange "amixer -D pulse sset Master {}%"
+            ;;:icon " "
+            :tooltip "${vol-num}")
+ (image :class "svg-tag" :path "images/ram2.svg" :image-width "20" :image-height "20")
+    (metric :value {round(EWW_RAM.used_mem / EWW_RAM.total_mem, 3) * 100}
+            ;;:icon " "
+            :tooltip "${round(EWW_RAM.used_mem / 1000000, 0)}Go / ${round(EWW_RAM.total_mem / 1000000, 0)}GB"
+            :value2 "${round(EWW_RAM.used_mem / 1000000000,2)} GB")
+
+ (image :class "svg-tag" :path "images/disk.svg" :image-width "20" :image-height "20")
+    (metric :value {(EWW_DISK["/"].used / EWW_DISK["/"].total) * 100}
+            ;;:icon " "
+            :tooltip "${round(EWW_DISK['/'].used / EWW_DISK['/'].total, 4) * 100}%"
+            :value2 "${round(EWW_DISK["/"].used / 1000000000,0)} GB")
+ (image :class "svg-tag" :path "images/cpu.png" :image-width "20" :image-height "20")
+    (metric :value {(EWW_CPU.avg)}
+            ;;:icon " "
+            :tooltip "${EWW_CPU.avg}"
+            :value2 "${round(EWW_CPU.avg,0)} %")
+            )
+            )
+
+(defwidget metric [value value2 tooltip ?font-size]
+  (box :space-evenly false
+       :tooltip tooltip
+(label :class "metric-icon"
+           ;;:style {font-size != "" ? "font-size: ${font-size}rem;" : ""})
+           :style "font-size: 18px;"
+           ;;:text icon)
+           )
+    ;; (label :class "metric-label" :text label)
+    (box
+    :orientation "v"
+    :valign "start"
+    :hexpand false
+    :space-evenly false
+    :class "info-box"
+    (label
+        :class "center_labels"
+        :text "${value2}"
+    )
+    (progress :value value
+              :orientation "h"
+              :class "metric-progress"))))
+(defwidget system-menu [?font-size]
+  (button :class "title" :onclick "./toggle_sysmenu.sh"
+ (image :class "svg-tag" :path "images/control-center2.svg" :image-width "20" :image-height "20")
+    ))
+
+(defwidget metric_control [value onchange]
+  (box :orientation "h"
+       :class "metric_control"
+       :space-evenly false
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defwidget cal_time []
+    (button :class "time" :onclick "./toggle_cal.sh"
+    (time)
+    )
+)
+
+(defwidget time []
+  (box  :orientation "h"
+    (box :class "hour" hour)
+    (box :class "date" date)))
+
+(defwidget widget_music []
+    (box
+     (box :class "title" :orientation "v" :halign "center" :class "music_backgroudn" :space-evenly true :hexpand false :style "background-image: url('${MUSIC_ART}')"
+        (label :class "music_title" :limit-width 25 :text "${MUSIC_TITLE}")
+        (label :class "music_artist"  :limit-width 25 :text "${MUSIC_ARTIST}"))
+        ;; add buttons here
+      (button :class "musicbutton"
+           :onclick "playerctl play-pause"
+        (image :path "images/prev.png" :image-height "20")
+           )
+
+      (button :class "musicbutton"
+           :onclick "playerctl play-pause"
+        (image :path "${MUSIC_PLAYING}" :image-height "20" :onclick "playerctl play-pause")
+           )
+      (button :class "musicbutton"
+           :onclick "playerctl next"
+        (image :path "images/next.png" :image-height "20")
+    )
+
+           ))
+
+(defwidget cal []
+  (calendar :halign "center" :valign "center" :class "cal" :month "${CURR_MONTH}" :year "${CURR_YEAR}"))
+
+
+(defwindow calendar
+  :wm-ignore: true
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "-620px"
+                      :y "70px"
+                      :width "240px"
+                      :height "160px"
+                      :anchor "top right")
+(cal))
+
+
+(defwidget lol_wrap []
+           (eventbox :class "title" :onhover "./toggle_lol.sh"
+                     (lol)))
+
+(defwidget lol []
+           (box :class "title"
+
+        (image :path "${LOGOA}" :image-height "20")
+        (label :limit-width 25 :text " : ")
+        (image :path "${LOGOB}" :image-height "20")
+        (label :limit-width 25 :text " in ${MATCH_TIME}")
+            ))

@@ -1,0 +1,88 @@
+(defwindow sysmenu :monitor 0
+           :geometry (geometry :x "-20px"
+                               :y "70px"
+                               :height "20px"
+                               :anchor "top right")
+           :stacking "fg"
+           :wm-ignore true
+  (box :orientation "v"
+       :space-evenly false
+    (top)
+    ))
+
+(defvar user "goodbye ~")
+(defpoll volume :interval "0.1s"
+  `pamixer --get-volume`)
+(defpoll muted :interval "0.1s"
+  `pamixer --get-volume-human &>/dev/null; echo $?`)
+(defpoll brightness :interval "0.1s"
+  `cat /sys/class/backlight/amdgpu_bl1/actual_brightness`)
+
+;; Top line (user and power menu)
+
+(defwidget title2 []
+  (label :class "title2"
+         :hexpand true
+         :limit-width 50
+	 :width 1
+         :wrap true
+         :text ""))
+(defwidget top []
+  (box :class "sysmenu-topbox"
+        ;;:valign "start"
+    (box :class "sysmenu-powermenu"
+         :halign "end"
+         :spacing 5
+       (button :class "title2"
+            :onclick "loginctl kill-session $XDG_SESSION_ID")
+
+      (button :class "powermenu-button"
+           :onclick "loginctl kill-session $XDG_SESSION_ID"
+ (image :class "svg-tag" :path "images/door.png" :image-width "20" :image-height "20"))
+      (button :class "powermenu-button"
+           :onclick "betterlockscreen -l dimblur"
+ (image :class "svg-tag" :path "images/lock.svg" :image-width "20" :image-height "20"))
+      (button :class "powermenu-button"
+           :onclick "reboot"
+ (image :class "svg-tag" :path "images/restart.png" :image-width "20" :image-height "20"))
+      (button :class "powermenu-button poweroff"
+           :onclick "poweroff"
+ (image :class "svg-tag" :path "images/power.svg" :image-width "20" :image-height "20")))))
+
+;; sound and brightness sliders
+
+(defwidget sliders []
+  (box :orientation "v"
+       :valign "start"
+       :class "sysmenu-sliders"
+
+    ;; Sound
+    (box :orientation "h"
+         :space-evenly false
+         :class "slider"
+      (button :halign "start"
+        {muted == "1" ? "婢" : "墳"})
+      (scale :halign "center"
+             :hexpand true
+             :min 0
+             :max 100
+             :value volume
+             :onchange "pamixer --set-volume $(echo {} | awk '{print ($0-int($0)<0.000001)?int($0):int($0)+1}')")
+      (button :halign "end"
+              :style "font-size: 20px;"
+        ""))
+
+    ;; Brightness
+    (box :orientation "h"
+         :space-evenly false
+         :class "slider"
+      (button :halign "start" "ﯦ")
+      (scale :halign "center"
+             :hexpand true
+             :min 1
+             :max 255
+             :value brightness
+             :onchange "echo {} | awk '{print ($0-int($0)<0.000001)?int($0):int($0)+1}' > /sys/class/backlight/amdgpu_bl1/brightness")
+      (button :halign "end"
+              :style "font-size: 20px;"
+        ""))))
