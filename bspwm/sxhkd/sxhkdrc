@@ -1,0 +1,269 @@
+#################################################################
+#################################################################
+##################    Applications etc   ########################
+#################################################################
+#################################################################
+
+
+#################################################################
+# SUPER + ... KEYS
+#################################################################
+
+#Browser
+super + w
+    brave	
+
+#Logout
+super + x
+    ~/.config/rofi/applets/bin/powermenu.sh
+
+#Terminal
+super + Return
+	kitty -1
+
+#Rofi
+super + d
+      ~/.config/rofi/launchers/type-7/launcher.sh
+
+#Emacs
+super + v
+	emacs
+
+#Emacs Client
+super + z
+    emacsclient -c
+
+#Apple Music
+super + m
+      cider
+
+#Culture
+super + a
+      kitty -e ani-cli
+
+
+#################################################################
+# SUPER + SHIFT KEYS
+#################################################################
+
+#Lofi Launcher
+super + shift + l
+      ~/Scripts/lofi.sh
+#Anki
+super + shift + j
+    anki
+
+#Jisho
+super + shift + k
+    tagainijisho
+
+#Screenlock
+super + shift + x
+      betterlockscreen -l dimblur --off 10s
+
+#Scratchpad
+super + shift + Return
+	~/Scripts/scpad
+
+#dmenu
+super + shift + d
+	dmenu_run -i -nb '#12131A' -nf '#E27878' -sb '#e27878' -sf '#12131A' -fn 'NotoMonoRegular:bold:pixelsize=14'
+
+#reload sxhkd:
+super + shift + s
+	pkill -USR1 -x sxhkd
+
+#Reload bspwm
+super + shift + r
+	~/.config/bspwm/bspwmrc
+
+
+#################################################################
+#     MULTIMEDIA KEYS
+#################################################################
+
+#Raises volume
+XF86AudioRaiseVolume
+    amixer set Master 10%+
+
+#Lowers volume
+XF86AudioLowerVolume
+    amixer set Master 10%-
+
+#Mute
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
+
+#Playerctl works for Pragha, Spotify and others
+#Delete the line for playerctl if you want to use mpc
+#and replace it with the corresponding code
+#mpc works for e.g.ncmpcpp
+#mpc toggle
+#mpc next
+#mpc prev
+#mpc stop
+
+#PLAY
+super + F10
+    playerctl play-pause
+
+#Next
+super + F12
+    playerctl next
+
+#previous
+super + F11
+    playerctl previous
+
+#Stop
+XF86AudioStop
+    playerctl stop
+
+
+#########################
+#        POLYBAR        #
+#########################
+
+#Hide polybar
+super + y
+    polybar-msg cmd toggle
+
+
+#################################################################
+#################################################################
+##################   Window Management   ########################
+#################################################################
+#################################################################
+
+#################################################################
+# CTRL + ALT KEYS
+#################################################################
+
+#Picom Toggle
+ctrl + alt + o
+    ~/.config/bspwm/scripts/picom-toggle.sh
+
+#################################################################
+# SUPER + KEYS
+#################################################################
+
+#Toggle fullscreen of window
+super + f
+	bspc node --state \~fullscreen
+
+# Toggle pseudo tiling of window
+super + p
+	bspc node --state \~pseudo_tiled
+
+#kill
+super + q
+	bspc node -c
+
+#Focus selected desktop
+super + Tab
+	bspc desktop -f '^{1-9,10}'
+
+# Focus/swap windows by direction
+super + {h,j,k,l}
+	bspc node --{focus} {west,south,north,east}
+
+#Switch to different workspaces
+super + {Left,Right}
+	bspc desktop -f {prev,next}
+
+# Increase/decrease window gap on focused desktop
+super + bracket{left,right}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+# set the window state
+super + space
+	bspc node -t {tiled,floating}
+
+# Move focus to other monitor
+super + BackSpace
+		bspc monitor -f next
+
+super + {1-9,0}
+       bspc desktop -f '^{1-9,10}'
+
+#################################################################
+# SUPER + ALT KEYS
+#################################################################
+
+# Move floating window
+super + alt + {_,shift + }{Left,Down,Up,Right}
+	~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
+
+#################################################################
+# SUPER + CONTROL KEYS
+#################################################################
+
+# Cancel preselection
+super + ctrl + space
+	bspc node --presel-dir cancel
+
+#################################################################
+# SUPER + SHIFT KEYS
+#################################################################
+
+#Move windows to different workspace
+super + shift + {1-9,0}
+    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
+
+#kill
+super + shift + q
+	bspc node -c
+
+# Focus/swap windows by direction
+super + {_,shift + }{h,j,k,l}
+	bspc node --{focus,swap} {west,south,north,east}
+
+# Flip layout vertically/horizontally
+super + {_,shift + }a
+	bspc node @/ --flip {vertical,horizontal}
+
+# Move focused window to other monitor
+super + shift + Left
+	bspc node -m next --follow
+
+# Move focused window to other monitor
+super + shift + Right
+		bspc node -m next --follow
+
+# Move focused window to other monitor
+super + shift + Up
+	bspc node -m next --follow
+
+# Move focused window to other monitor
+super + shift + Down
+		bspc node -m next --follow
+
+#################################################################
+# SUPER + CONTROL KEYS
+#################################################################
+
+
+# # Contract tiled space
+# super + ctrl + {h,j,k,l}
+# 	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# Focus parent/brother/first/second for preselection
+super + ctrl + {e,r,t,y}
+	bspc node --focus @{parent,brother,first,second}
+
+# Preselect the splitting area for next window on leaf/parent
+super + ctrl + {h,j,k,l}
+	bspc node --presel-dir \~{west,south,north,east}
+
+# Define splitting ratio for next window on leaf/parent
+super + ctrl + {_,shift +}{1-9}
+	bspc node {_,@/} --presel-ratio 0.{1-9}
+
+
+#################################################################
+# ALT KEYS
+#################################################################
+
+#Rotate desktop
+alt + space
+	bspc node @/ --rotate {90,-90}

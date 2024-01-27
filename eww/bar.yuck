@@ -181,7 +181,7 @@
        :tooltip tooltip
 (label :class "metric-icon"
            ;;:style {font-size != "" ? "font-size: ${font-size}rem;" : ""})
-           :style "font-size: 18px;"
+           :style "font-size: 10px;"
            ;;:text icon)
            )
     ;; (label :class "metric-label" :text label)
@@ -192,7 +192,7 @@
     :space-evenly false
     :class "info-box"
     (label
-        :class "center_labels"
+        :class "center_labels" :style "font-size: 15.5px"
         :text "${value2}"
     )
     (progress :value value

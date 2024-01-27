@@ -18,18 +18,18 @@ fi
 feh --bg-fill ~/Wallpapers/gruvbox_girl_dark.png
 
 export ZDOTDIR=$HOME/.config/zsh
-dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+#dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 xsetroot -cursor_name left_ptr &
 
-run nm-applet &
-run pamac-tray &
-run xfce4-power-manager &
-numlockx on &
-blueberry-tray &
+#run nm-applet &
+#run pamac-tray &
+#run xfce4-power-manager &
+#numlockx on &
+#blueberry-tray &
 picom --config $HOME/.config/picom/picom.conf &
 run dropbox &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-run volumeicon &
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#run volumeicon &
 run dropbox &
 run dunst &
 emacs --daemon &
