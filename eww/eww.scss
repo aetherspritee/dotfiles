@@ -317,6 +317,9 @@ $yellow2: #fabd2f;
 	padding-left: 20px;
 	padding-right: 20px;
     text-shadow: 1px 1px #000000;
+    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .cal {
@@ -328,7 +331,12 @@ $yellow2: #fabd2f;
 
 .lol_popup {
     font-size: 15px;
+    border: 2px solid;
+    border-color: $fg-color;
+    border-radius: 5;
     color: $fg-color;
-    margin: 8px 0;
-	background-color: $box-color2;
+    margin: 8px;
+	// background-color: $box-color2;
+	padding-left: 20px;
+	padding-right: 20px;
 }

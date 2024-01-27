@@ -1,5 +1,5 @@
 (defwindow lolpopup :monitor 0
-           :geometry (geometry :x "-660px"
+           :geometry (geometry :x "-980px"
                                :y "70px"
                                :height "50px"
                                :anchor "top center")
@@ -57,32 +57,32 @@
 
 
 (defwidget popup []
-  (box :class "lol_popup" :orientation "v" :valign "center" :space-evenly false
-    (box
+  (box :class "lol_popup" :orientation "v"
+    (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA1}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB1}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text "in ${MATCH_TIME1}"))
 
-    (box
+    (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA2}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB2}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text "in ${MATCH_TIME2}"))
 
-    (box
+    (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA3}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB3}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text "in ${MATCH_TIME3}"))
 
-    (box
+    (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA4}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB4}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text "in ${MATCH_TIME4}"))
 
-    (box
+    (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA5}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB5}" :image-width "20" :image-height "20")

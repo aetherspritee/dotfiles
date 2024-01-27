@@ -126,7 +126,7 @@ XF86AudioStop
 
 #Hide polybar
 super + y
-    polybar-msg cmd toggle
+   eww open --toggle bar0 
 
 
 #################################################################
