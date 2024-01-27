@@ -71,7 +71,7 @@
 ;; Left module (tags and layout)
 
 (defwidget left []
-  (box :class "left" :halign "left" :space-evenly false :spacing 12 :hexpand true :vexpand false
+  (box :class "left" :halign "baseline" :space-evenly false :spacing 12 :hexpand false
     (workspaces :names active-workspaces :current-idx current-workspace-index)(title)
     (widget_music)
     (lol_wrap)
@@ -263,12 +263,11 @@
 
 
 (defwidget lol_wrap []
-           (eventbox :class "title" :onhover "./toggle_lol.sh"
+           (eventbox  :onhover "./toggle_lol.sh" :onhoverlost "./toggle_lol.sh"
                      (lol)))
 
 (defwidget lol []
            (box :class "title"
-
         (image :path "${LOGOA}" :image-height "20")
         (label :limit-width 25 :text " : ")
         (image :path "${LOGOB}" :image-height "20")
