@@ -232,7 +232,7 @@
     (box :class "date" date)))
 
 (defwidget widget_music []
-     (box :class "title" :orientation "v" :halign "center" :class "music_backgroudn" :space-evenly true :hexpand false :style "background-image: url('${MUSIC_ART}')"
+     (box :class "title" :orientation "v" :halign "center" :class "music_backgroudn" :space-evenly true :hexpand false :style "background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${MUSIC_ART}')"
         (label :class "music_title" :limit-width 25 :text "${MUSIC_TITLE}")
         (label :class "music_artist"  :limit-width 25 :text "${MUSIC_ARTIST}"))
         ;; add buttons here
@@ -285,7 +285,7 @@
         (image :path "${LOGOA}" :image-height "20")
         (label :limit-width 25 :text " : ")
         (image :path "${LOGOB}" :image-height "20")
-        (label :limit-width 25 :text "in ${MATCH_TIME}")
+        (label :limit-width 25 :text " ${MATCH_TIME}")
             ))
 
 (defwidget bt_wrap []

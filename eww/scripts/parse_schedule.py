@@ -66,6 +66,7 @@ def main():
 
     now = datetime.datetime.now()
     upcoming_matches = []
+    live_match = []
     for game in data:
         raw_date = game["date"]
         raw_date = f"{raw_date[0]}-{raw_date[1]}-{raw_date[2]} {raw_date[3]}:{raw_date[4]}"
@@ -88,7 +89,20 @@ def main():
                     upcoming_matches = upcoming_matches[:index] + [game]
                 else:
                     upcoming_matches = upcoming_matches[:index] + [game] + upcoming_matches[index:]
-    upcoming_matches= upcoming_matches[::-1]
+
+        else:
+            if len(live_match) == 0:
+                live_match = [game]
+            # check if theres a live game
+            if diff.total_seconds() > live_match[0]["diff"]:
+                live_match = [game]
+                if abs(diff.total_seconds()) < 3*60*60:
+                    live_match[0]["diff2"] = "LIVE!"
+
+    upcoming_matches = upcoming_matches[::-1]
+    upcoming_matches = live_match+upcoming_matches
+    # print(live_match)
+    # print(upcoming_matches)
 
     if args.team1:
         print(upcoming_matches[0]["left_team"])
@@ -111,10 +125,9 @@ def main():
         print(f"scripts/logoB{args.logo2-1}.png")
 
     if args.time:
-        # print(upcoming_matches[0]["diff2"].days)
-        # print(upcoming_matches[0]["diff2"])
-        print(strfdelta(upcoming_matches[args.time-1]["diff2"]))
-        # print(upcoming_matches[0]["diff2"].hours)
-        # print(upcoming_matches[0]["diff2"].minutes)
+        if upcoming_matches[args.time-1]["diff2"] != "LIVE!":
+            print(f" in {strfdelta(upcoming_matches[args.time-1]['diff2'])}")
+        else:
+            print("LIVE!")
 if __name__ == "__main__":
     main()
