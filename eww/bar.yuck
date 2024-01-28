@@ -41,6 +41,7 @@
 (defpoll BT :interval "1m"
   "scripts/bt_bat.sh")
 
+
 (defwindow bar0 :monitor 0
            :class "box"
            :geometry (geometry :x "0%"
@@ -78,6 +79,7 @@
     (workspaces :names active-workspaces :current-idx current-workspace-index)(title)
     (widget_music)
     (music_buttons)
+    (upgrades)
     (lol_wrap)
     ))
 
@@ -197,7 +199,7 @@
     :space-evenly false
     :class "info-box"
     (label
-        :class "center_labels" :style "font-size: 15.5px"
+        :class "center_labels" :style "font-size: 14.5px"
         :text "${value2}"
     )
     (progress :value value
@@ -266,6 +268,12 @@
                       :height "160px"
                       :anchor "top right")
 (cal))
+
+(defwidget upgrades []
+    (box :class "title"
+        (image :path "images/package.png" :image-height "20")
+        (label :limit-width 25 :text " ${UPGR_PACKAGES}")
+           ))
 
 
 (defwidget lol_wrap []

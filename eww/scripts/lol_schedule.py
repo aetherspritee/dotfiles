@@ -57,7 +57,7 @@ for ts in times:
     day = parts[1][:-1]
     year = parts[2]
     time = parts[4].split(":")
-    hour = time[0]
+    hour = str(int(time[0])+1)
     min = time[1]
     formatted_time.append([month, day, year, hour, min])
 

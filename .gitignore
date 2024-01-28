@@ -45,3 +45,8 @@ qt5ct
 emacs
 doom
 Cider
+tailscale
+**/*.png
+**/*.jpg
+**/*.svg
+**/*.json
