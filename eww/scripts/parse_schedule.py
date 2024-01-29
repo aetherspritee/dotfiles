@@ -96,11 +96,16 @@ def main():
             # check if theres a live game
             if diff.total_seconds() > live_match[0]["diff"]:
                 live_match = [game]
-                if abs(diff.total_seconds()) < 3*60*60:
+
+                if abs(diff.total_seconds()) < 2*60*60:
+                    # print(abs(diff.total_seconds()))
                     live_match[0]["diff2"] = "LIVE!"
 
     upcoming_matches = upcoming_matches[::-1]
-    upcoming_matches = live_match+upcoming_matches
+    if len(live_match) == 0:
+        pass
+    elif abs(live_match[0]["diff"]) < 2*60*60:
+        upcoming_matches = live_match+upcoming_matches
     # print(live_match)
     # print(upcoming_matches)
 

@@ -62,31 +62,31 @@
     (image :class "svg-tag" :path "${TEAMA1}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB1}" :image-width "20" :image-height "20")
-    (label :limit-width 25 :text "in ${MATCH_TIME1}"))
+    (label :limit-width 25 :text " ${MATCH_TIME1}"))
 
     (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA2}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB2}" :image-width "20" :image-height "20")
-    (label :limit-width 25 :text "in ${MATCH_TIME2}"))
+    (label :limit-width 25 :text " ${MATCH_TIME2}"))
 
     (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA3}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB3}" :image-width "20" :image-height "20")
-    (label :limit-width 25 :text "in ${MATCH_TIME3}"))
+    (label :limit-width 25 :text " ${MATCH_TIME3}"))
 
     (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA4}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB4}" :image-width "20" :image-height "20")
-    (label :limit-width 25 :text "in ${MATCH_TIME4}"))
+    (label :limit-width 25 :text " ${MATCH_TIME4}"))
 
     (box :space-evenly false
     (image :class "svg-tag" :path "${TEAMA5}" :image-width "20" :image-height "20")
     (label :limit-width 25 :text ":")
     (image :class "svg-tag" :path "${TEAMB5}" :image-width "20" :image-height "20")
-    (label :limit-width 25 :text "in ${MATCH_TIME5}"))
+    (label :limit-width 25 :text " ${MATCH_TIME5}"))
 
        )
   )

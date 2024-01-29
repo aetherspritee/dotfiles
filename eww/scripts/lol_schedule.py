@@ -2,8 +2,6 @@ import requests, re, calendar, json
 from bs4 import BeautifulSoup
 
 
-# TODO: filter out challenger series
-
 months = list(calendar.month_name)
 base_url = "https://liquipedia.net"
 url = "https://liquipedia.net/leagueoflegends/api.php?"+"action=parse&format=json&page="+"Liquipedia:Matches"
@@ -14,7 +12,7 @@ headers = {
 }
 
 team_regex = 'title="[a-z. A-Z0-9\']*"'
-time_regex = "[A-Z][a-z]* [0-3][0-9], [0-9]{4} - [0-2]*[0-9]:[0-5][0-9]"
+time_regex = "[A-Z][a-z]* [0-3]*[0-9], [0-9]{4} - [0-2]*[0-9]:[0-5][0-9]"
 image_regex = "[a-z.A-Z%\/_0-9-\']*.png"
 
 response = requests.get(url, headers=headers)
@@ -33,10 +31,11 @@ tables = soup.findAll('table')
 
 # print(tables[0])
 for table in tables:
-    if re.findall("LCK", str(table)) or re.findall("LEC",str(table)) or re.findall("LPL", str(table)):
+    if re.findall('"LCK"', str(table)) or re.findall('"LEC"',str(table)) or re.findall('"lpl"', str(table)):
         match_fillers = table.findAll('td', class_="match-filler")
+        # print(match_fillers)
         for match_filler in match_fillers:
-            # print(match_filler)
+            print(match_filler)
             times.append(re.findall(time_regex,str(match_filler))[0])
         team1 = table.findAll('td', class_="team-left")
         # print(team1)
