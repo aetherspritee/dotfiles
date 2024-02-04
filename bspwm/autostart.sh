@@ -16,6 +16,7 @@ else
 fi
 
 feh --bg-fill ~/Wallpapers/gruvbox_girl_dark.png
+feh --bg-fill ~/Wallpapers/gruvbox_palms.png
 
 export ZDOTDIR=$HOME/.config/zsh
 #dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
