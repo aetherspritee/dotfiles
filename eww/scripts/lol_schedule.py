@@ -67,7 +67,7 @@ for t1,t2,t,i1,i2 in zip(left_teams,right_teams, formatted_time, left_images, ri
 
 games = {"games": games}
 
-with open("games.json", "w") as f:
+with open("/home/yulivee/.config/eww/scripts/games.json", "w") as f:
     pass
-with open("games.json", "a") as f:
+with open("/home/yulivee/.config/eww/scripts/games.json", "a") as f:
     json.dump(games, f)
