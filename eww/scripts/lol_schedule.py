@@ -1,5 +1,8 @@
 import requests, re, calendar, json
 from bs4 import BeautifulSoup
+from pathlib import Path
+
+home = str(Path.home())
 
 
 months = list(calendar.month_name)
@@ -67,7 +70,7 @@ for t1,t2,t,i1,i2 in zip(left_teams,right_teams, formatted_time, left_images, ri
 
 games = {"games": games}
 
-with open("/home/yulivee/.config/eww/scripts/games.json", "w") as f:
+with open(home+"/.config/eww/scripts/games.json", "w") as f:
     pass
-with open("/home/yulivee/.config/eww/scripts/games.json", "a") as f:
+with open(home+"/.config/eww/scripts/games.json", "a") as f:
     json.dump(games, f)
