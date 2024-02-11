@@ -46,6 +46,9 @@ emacs
 doom
 Cider
 tailscale
+syncthing
+nautilus
+**/*.png
 **/*.png
 **/*.jpg
 **/*.svg
