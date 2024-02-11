@@ -94,7 +94,7 @@ def main():
             if len(live_match) == 0:
                 live_match = [game]
             # check if theres a live game
-            if diff.total_seconds() > live_match[0]["diff"]:
+            if diff.total_seconds() >= live_match[0]["diff"]:
                 live_match = [game]
 
                 if abs(diff.total_seconds()) < 2*60*60:
