@@ -46,4 +46,4 @@ run dropbox &
 run dunst &
 
 pkill double_border; ~/.config/bspwm/scripts/double_border &
-source venv/bin/activate && python "~/.config/eww/scripts/lol_schedule.py"
+source venv/bin/activate && python ".config/eww/scripts/lol_schedule.py"
