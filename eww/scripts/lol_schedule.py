@@ -41,15 +41,25 @@ for table in tables:
             print(match_filler)
             times.append(re.findall(time_regex,str(match_filler))[0])
         team1 = table.findAll('td', class_="team-left")
-        # print(team1)
         for team in team1:
-            left_teams.append(re.findall(team_regex,str(team))[0].split("=")[-1])
-            left_images.append(base_url+re.findall(image_regex,str(team))[0])
+            # print(f"{str(team) = }")
+            if len(re.findall(team_regex,str(team))) == 0:
+                # TBD team
+                left_teams.append("TBD")
+                left_images.append("https://icons.veryicon.com/png/o/miscellaneous/basic-icon-1/unknown-18.png")
+            else:
+                left_teams.append(re.findall(team_regex,str(team))[0].split("=")[-1])
+                left_images.append(base_url+re.findall(image_regex,str(team))[0])
         team2 = table.findAll('td', class_="team-right")
         # print(team2)
         for team in team2:
-            right_teams.append(re.findall(team_regex,str(team))[0].split("=")[-1])
-            right_images.append(base_url+re.findall(image_regex,str(team))[0])
+            if len(re.findall(team_regex,str(team))) == 0:
+                # TBD team
+                right_teams.append("TBD")
+                right_images.append("https://icons.veryicon.com/png/o/miscellaneous/basic-icon-1/unknown-18.png")
+            else:
+                right_teams.append(re.findall(team_regex,str(team))[0].split("=")[-1])
+                right_images.append(base_url+re.findall(image_regex,str(team))[0])
 
 games = []
 formatted_time = []
