@@ -4,24 +4,15 @@
 }
 #custom-launcher {
     color: #e5809e;
-    background-color: #282828;
+    background-color: #1e1e2e;
     border-radius: 24px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 10px;
     margin-left: 10px;
     padding: 5px 15px 5px 15px;
-/*     /\*border-right: solid 1px #282738;*\/ */
-/*     font-size: 10px; */
 }
 
-/* #custom-launcher button:hover { */
-/*     background-color: #FB4934; */
-/*     color: transparent; */
-/*     border-radius: 8px; */
-/*     margin-right: -5px; */
-/*     margin-left: 10px; */
-/* } */
 
 window#waybar {
     background-color: transparent;
@@ -36,7 +27,7 @@ window#waybar {
 }
 #workspaces button{
     box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-    background-color: #282828;
+    background-color: #1e1e2e;
     border-radius: 15px;
     margin-right: 10px;
     padding-top: 4px;
@@ -47,15 +38,8 @@ window#waybar {
 }
 
 #workspaces button.active{
-    /* padding-right: 20px; */
-    /* box-shadow: rgba(0, 0, 0, 0.288) 2 2 5 2px; */
-    /* text-shadow: 0 0 5px rgba(0, 0, 0, 0.377); */
-    /* padding-left: 20px; */
-    /* padding-bottom: 3px; */
-    /* border-radius: 15px; */
-
     box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-    color: #282828;
+    color: #1e1e2e;
     background: linear-gradient(45deg, rgba(202,158,230,1) 0%, rgba(245,194,231,1) 43%, rgba(180,190,254,1) 80%, rgba(137,180,250,1) 100%);
     border-radius: 25px;
     margin-right: 10px;
@@ -87,22 +71,10 @@ window#waybar {
 
 
 #clock,
-#battery,
 #cpu,
 #memory,
 #disk,
-#temperature,
-#backlight,
-#network,
 #pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#custom-expand,
-#custom-cycle_wall,
-#custom-ss,
-#custom-dynamic_pill,
 #mpd {
     padding: 0 10px;
     border-radius: 15px;
@@ -232,7 +204,7 @@ label:focus {
 
 #custom-cava-internal {
     box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-    background-color: #282828 ;
+    background-color: #1e1e2e ;
     border-radius: 24px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -258,7 +230,7 @@ label:focus {
 
 #custom-myplayerlabel {
     box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-    background-color: #282828 ;
+    background-color: #1e1e2e ;
     border-radius: 24px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -271,7 +243,7 @@ label:focus {
 
 #cpu {
     /* background: rgb(180,190,254); */
-    background: #282828;
+    background: #1e1e2e;
     /* background: linear-gradient(52deg, rgba(180,190,254,1) 0%, rgba(137,220,235,1) 32%, rgba(137,180,250,1) 72%, rgba(166,227,161,1) 100%); */
     background-size: 300% 300%;
     animation: gradient 20s ease infinite;
@@ -292,37 +264,8 @@ label:focus {
     color: #964B00;
 }
 
-#backlight {
-    color: #90b1b1;
-}
-
-#network{
-    color:#000;
-}
-
-#network.disabled{
-    background-color: #45475a;
-}
-
-#network.disconnected{
-    background: rgb(243,139,168);
-    background: linear-gradient(45deg, rgba(243,139,168,1) 0%, rgba(250,179,135,1) 100%); 
-    color: #fff;
-    font-weight: bolder;
-    padding-top: 3px;
-    padding-right: 11px;
-}
-
-#network.linked, #network.wifi{
-    background-color: #a6e3a1 ;
-}
-
-#network.ethernet{
-    background-color:#f9e2af ;
-}
-
 #pulseaudio {
-    background-color:  	#282828;
+    background-color:  	#1e1e2e;
     color: #cba6f7;
     font-weight: bolder;
 }
@@ -332,87 +275,3 @@ label:focus {
     color: #282828;
 }
 
-#custom-media {
-    color: #66cc99;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    background-color: #f9e2af;
-    color:#96804e;
-}
-
-#temperature.critical {
-    background-color: #f38ba8 ;
-    color:#bf5673;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
