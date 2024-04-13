@@ -270,18 +270,21 @@ label:focus {
 }
 
 #cpu {
-    background: rgb(180,190,254);
-    background: linear-gradient(52deg, rgba(180,190,254,1) 0%, rgba(137,220,235,1) 32%, rgba(137,180,250,1) 72%, rgba(166,227,161,1) 100%); 
+    /* background: rgb(180,190,254); */
+    background: #282828;
+    /* background: linear-gradient(52deg, rgba(180,190,254,1) 0%, rgba(137,220,235,1) 32%, rgba(137,180,250,1) 72%, rgba(166,227,161,1) 100%); */
     background-size: 300% 300%;
     animation: gradient 20s ease infinite;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
-    /* background-color: #b4befe; */
-    color: 	#fff;
+    color: #b4befe;
+    /* color: 	#fff; */
 }
 
 #memory {
-    background-color: #cba6f7;
-    color: 	#9a75c7;
+    background: rgb(180,190,254);
+    background: linear-gradient(45deg, rgba(202,158,230,1) 0%, rgba(245,194,231,1) 43%, rgba(180,190,254,1) 80%, rgba(137,180,250,1) 100%);
+    background-size: 300% 300%;
+    color: 	#fff;
     font-weight: bolder;
 }
 
@@ -319,13 +322,14 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color:  	#fab387;
-    color: #bf7d54;
+    background-color:  	#282828;
+    color: #cba6f7;
     font-weight: bolder;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
+    background-color: #cba6f7;
+    color: #282828;
 }
 
 #custom-media {
