@@ -6,7 +6,7 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/myplayerlabel", "custom/cava-internal"],
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/myplayerlabel", "custom/cava-internal", "custom/updates"],
     "modules-center": [],
     "modules-right": [ "cpu", "memory", "pulseaudio", "clock"],
     // Modules configuration
@@ -59,6 +59,11 @@
     "tooltip": false
 },
 
+"custom/updates": {
+  "format": "    {}",
+  "exec": "~/.config/eww/scripts/upgrades",
+  "interval": 120,
+},
 
     "custom/myplayerlabel": {
       "format": "{icon}   {}",
