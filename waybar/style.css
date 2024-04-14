@@ -165,9 +165,9 @@ window#waybar {
 
 #clock {
     background: rgb(245,194,231);
-    background: linear-gradient(45deg, rgba(245,194,231,1) 0%, rgba(203,166,247,1) 64%, rgba(202,158,230,1) 100%); 
+    background: linear-gradient(45deg, rgba(202,158,230,1) 0%, rgba(245,194,231,1) 43%, rgba(180,190,254,1) 80%, rgba(137,180,250,1) 100%);
     margin-right: 25px;
-    color: #fff ;
+    color: #1e1e2e;
     background-size: 300% 300%;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
     animation: gradient 20s ease infinite;
@@ -215,7 +215,7 @@ label:focus {
 
 #custom-cava-internal {
     box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-    background-color: #1e1e2e ;
+    background: linear-gradient(45deg, rgba(202,158,230,1) 0%, rgba(245,194,231,1) 43%, rgba(180,190,254,1) 80%, rgba(137,180,250,1) 100%);
     border-radius: 24px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -223,7 +223,7 @@ label:focus {
     margin-left: 10px;
     padding: 5px 15px 5px 15px;
     font-weight: bolder;
-    color: 	#cba6f7 ;
+    color: 	#1e1e2e ;
 }
 
 #custom-myplayerctl {
@@ -267,7 +267,7 @@ label:focus {
     background: rgb(180,190,254);
     background: linear-gradient(45deg, rgba(202,158,230,1) 0%, rgba(245,194,231,1) 43%, rgba(180,190,254,1) 80%, rgba(137,180,250,1) 100%);
     background-size: 300% 300%;
-    color: 	#fff;
+    color: 	#1e1e2e;
     font-weight: bolder;
 }
 
