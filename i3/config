@@ -26,7 +26,7 @@ set $mod Mod4
 set $up l
 set $down k
 set $left j
-set $right semicolon 
+set $right k
 
 ################# Single and Dual screen
 
@@ -397,7 +397,7 @@ exec --no-startup-id volumeicon
 
 # feh sets wallpaper
 # exec --no-startup-id feh --bg-fill ~/Dropbox/Wallpapers/mono-dot-2.png &
-exec --no-startup-id feh --bg-fill ~/Dropbox/Wallpapers/ghibli-japanese-walled-garden.png &
+exec --no-startup-id feh --bg-fill ~/Wallpapers/obito.png &
 
 exec --no-startup-id /usr/bin/emacs --daemon &
 exec --no-startup-id wmname LG3D
@@ -775,19 +775,19 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 #     # i3 bar colors
 #     # variable border background Text
 
-#     colors {
-#         background #2F2F2F
-#         statusline #eeeeee
-#         separator  #666666
+    # colors {
+    #     background #2F2F2F
+    #     statusline #eeeeee
+    #     separator  #666666
 
-#         # colorclass           border  backgr. text
-#         focused_workspace     #a9a9a9 #5f676a #eeeeee
-#         active_workspace      #a9a9a9 #5f676a #eeeeee
-#         inactive_workspace    #a9a9a9 #222222 #a9a9a9
-#         urgent_workspace      #a9a9a9 #d42121 #FFFFFF
-#         }
+    #     # colorclass           border  backgr. text
+    #     focused_workspace     #ffffa9 #5f676a #eeeeee
+    #     active_workspace      #a9a9a9 #5f676a #eeeeee
+    #     inactive_workspace    #a9a9a9 #222222 #a9a9a9
+    #     urgent_workspace      #a9a9a9 #d42121 #FFFFFF
+    #     }
 
-#     }
+    # }
     ##STOP THEMING BAR
 
     ##START THEMING WM
@@ -795,13 +795,13 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
     # Window color settings
     # class                 border  backgr. text    indicator
-    client.focused          #222222 #222222 #e5e5e5 #222222
+    client.focused          #ff22ff #ffffa9 #e5e5e5 #ffffa9
     client.unfocused        #222222 #222222 #aaaaaa #222222
     client.focused_inactive #222222 #222222 #a9a9a9 #222222
     client.placeholder      #222222 #222222 #aaaaaa #222222
     client.urgent           #d42121 #d42121 #f7f7f7 #d42121
 
-    client.background       #242424
+    client.background       #ffffa9
 
     ##STOP THEMING WM
 
