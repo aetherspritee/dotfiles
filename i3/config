@@ -163,7 +163,7 @@ bindsym $mod+q kill
 floating_modifier $mod
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle
 
 # change focus
 bindsym $mod+h focus left
@@ -222,11 +222,11 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 # qwerty/azerty issue for letter z
 bindsym $mod+s layout stacking
-bindsym $mod+z layout tabbed
+# bindsym $mod+z layout tabbed
 bindsym $mod+e layout toggle split
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -475,9 +475,12 @@ bindsym --release $mod+Escape exec xkill
 # Browser
 bindsym $mod+F1 exec --no-startup-id exo-open --launch webbrowser;focus
 # qwerty/azerty conflict with w
-bindsym $mod+w exec --no-startup-id chromium;focus
+# bindsym $mod+w exec --no-startup-id chromium;focus
 bindsym control+mod1+f exec --no-startup-id firefox;focus
 bindsym $mod+v exec --no-startup-id emacs;focus
+bindsym $mod+z exec --no-startup-id emacsclient -c;focus
+bindsym $mod+w exec --no-startup-id firefox;focus
+bindsym $mod+m exec --no-startup-id cider;focus
 bindsym control+mod1+g exec --no-startup-id chromium;focus
 
 # Text Editor
