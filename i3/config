@@ -235,11 +235,14 @@ bindsym $mod+x exec --no-startup-id archlinux-logout
 # bindsym $mod+Shift+x exec --no-startup-id dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 bindsym $mod+Shift+x exec --no-startup-id betterlockscreen --lock blur
 bindsym $mod+Shift+j exec --no-startup-id anki
+bindsym $mod+Shift+l exec --no-startup-id ~/Scripts/lofi.sh
+bindsym $mod+Shift+t exec --no-startup-id ~/Scripts/cozyness.sh --play
 # focus the child container
 # bindsym $mod+d focus child
 
 bindsym $mod+d exec --no-startup-id .config/rofi/launchers/type-3/launcher.sh
-
+# bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#12131A' -nf '#DCDCAA' -sb '#DCDCAA' -sf '#12131A' -fn 'CaskaydiaCove Nerd Font:regular:size=14'
+# bindsym $mod+Shift+j --no-startup-id anki
 bindsym $mod+Shift+KP_Enter [instance="rngr"] scratchpad show; move position center
 
 bindsym $mod+Shift+f exec alacritty --name rngr -e ranger
@@ -397,12 +400,11 @@ exec --no-startup-id volumeicon
 
 # feh sets wallpaper
 # exec --no-startup-id feh --bg-fill ~/Dropbox/Wallpapers/mono-dot-2.png &
-exec --no-startup-id feh --bg-fill ~/Wallpapers/obito.png &
+exec --no-startup-id feh --bg-fill ~/Wallpapers/nasa_amoled.jpg &
 
 exec --no-startup-id /usr/bin/emacs --daemon &
 exec --no-startup-id wmname LG3D
 # Polybar
-exec_always --no-startup-id ~/.config/polybar/darkplus/launch.sh &
 
 ################# system applications       
 
@@ -854,3 +856,7 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
 # get the mouse out of the way with unclutter
 # exec --no-startup-id unclutter
+
+exec_always --no-startup-id ~/.config/polybar/darkplus/launch.sh &
+
+for_window [class="^ffplay"] floating enable, move position 3300 px 50 px, resize set 500 px 300 px
