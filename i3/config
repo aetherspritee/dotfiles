@@ -234,9 +234,10 @@ bindsym $mod+a focus parent
 bindsym $mod+x exec --no-startup-id archlinux-logout
 # bindsym $mod+Shift+x exec --no-startup-id dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 bindsym $mod+Shift+x exec --no-startup-id betterlockscreen --lock blur
-bindsym $mod+Shift+j exec --no-startup-id anki
+bindsym $mod+Shift+j exec --no-startup-id /usr/local/bin/anki
 bindsym $mod+Shift+l exec --no-startup-id ~/Scripts/lofi.sh
 bindsym $mod+Shift+t exec --no-startup-id ~/Scripts/cozyness.sh --play
+bindsym $mod+Shift+m exec --no-startup-id ~/Scripts/rofi-files.sh
 # focus the child container
 # bindsym $mod+d focus child
 
@@ -402,7 +403,7 @@ exec --no-startup-id volumeicon
 # exec --no-startup-id feh --bg-fill ~/Dropbox/Wallpapers/mono-dot-2.png &
 exec --no-startup-id feh --bg-fill ~/Wallpapers/nasa_amoled.jpg &
 
-exec --no-startup-id /usr/bin/emacs --daemon &
+exec --no-startup-id /usr/local/bin/emacs --daemon &
 exec --no-startup-id wmname LG3D
 # Polybar
 
@@ -646,7 +647,7 @@ bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
 
 # changing border style
 # super+t in arcolinux is starting terminal
-bindsym $mod+t border normal
+# bindsym $mod+t border normal
 bindsym $mod+y border pixel 1
 bindsym $mod+u border none
 
@@ -859,4 +860,4 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
 exec_always --no-startup-id ~/.config/polybar/darkplus/launch.sh &
 
-for_window [class="^ffplay"] floating enable, move position 3300 px 50 px, resize set 500 px 300 px
+for_window [class="^mpv"] floating enable, move position 3300 px 50 px, resize set 500 px 300 px
