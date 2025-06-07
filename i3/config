@@ -124,7 +124,7 @@ bindsym $mod+F12 exec --no-startup-id rofi -show drun -font "Noto Sans 13"
 
 # Backup exit
 # Press ctrl+alt+x - check toolbar for next choices
-bindsym control+mod1+X mode "$mode_system"
+# bindsym control+mod1+X mode "$mode_system"
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
@@ -231,17 +231,22 @@ bindsym $mod+e layout toggle split
 # focus the parent container
 bindsym $mod+a focus parent
 
-bindsym $mod+x exec --no-startup-id archlinux-logout
+# bindsym $mod+x exec --no-startup-id archlinux-logout
 # bindsym $mod+Shift+x exec --no-startup-id dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 bindsym $mod+Shift+x exec --no-startup-id betterlockscreen --lock blur
 bindsym $mod+Shift+j exec --no-startup-id /usr/local/bin/anki
 bindsym $mod+Shift+l exec --no-startup-id ~/Scripts/lofi.sh
 bindsym $mod+Shift+t exec --no-startup-id ~/Scripts/cozyness.sh --play
 bindsym $mod+Shift+m exec --no-startup-id ~/Scripts/rofi-files.sh
+bindsym $mod+Shift+p exec --no-startup-id ~/Scripts/rofi-papers.sh
+bindsym $mod+Shift+a exec --no-startup-id flatpak run com.github.geigi.cozy
+bindsym Mod1+l exec --no-startup-id ~/Scripts/jisho_api.sh
 # focus the child container
 # bindsym $mod+d focus child
 
-bindsym $mod+d exec --no-startup-id .config/rofi/launchers/type-3/launcher.sh
+# bindsym $mod+d exec --no-startup-id .config/rofi/launchers/type-3/launcher.sh
+bindsym $mod+x exec --no-startup-id .config/polybar/vimlike/scripts/commandline.sh
+bindsym $mod+d exec --no-startup-id rofi -show drun
 # bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#12131A' -nf '#DCDCAA' -sb '#DCDCAA' -sf '#12131A' -fn 'CaskaydiaCove Nerd Font:regular:size=14'
 # bindsym $mod+Shift+j --no-startup-id anki
 bindsym $mod+Shift+KP_Enter [instance="rngr"] scratchpad show; move position center
@@ -400,8 +405,9 @@ exec --no-startup-id volumeicon
 # exec --no-startup-id conky -c ~/.config/i3/system-overview
 
 # feh sets wallpaper
-# exec --no-startup-id feh --bg-fill ~/Dropbox/Wallpapers/mono-dot-2.png &
-exec --no-startup-id feh --bg-fill ~/Wallpapers/nasa_amoled.jpg &
+# exec --no-startup-id feh --bg-fill ~/Nextcloud/Wallpapers/mono-dot-2.png &
+# exec --no-startup-id feh --bg-fill ~/Nextcloud/Wallpapers/nasa_amoled.jpg &
+exec --no-startup-id feh --bg-fill ~/Nextcloud/Wallpapers/evening_clouds2.jpg &
 
 exec --no-startup-id /usr/local/bin/emacs --daemon &
 exec --no-startup-id wmname LG3D
@@ -482,8 +488,9 @@ bindsym $mod+F1 exec --no-startup-id exo-open --launch webbrowser;focus
 bindsym control+mod1+f exec --no-startup-id firefox;focus
 bindsym $mod+v exec --no-startup-id emacs;focus
 bindsym $mod+z exec --no-startup-id emacsclient -c;focus
-bindsym $mod+w exec --no-startup-id firefox;focus
-bindsym $mod+m exec --no-startup-id cider;focus
+bindsym $mod+Shift+z exec --no-startup-id boomer
+bindsym $mod+w exec --no-startup-id zen-browser;focus
+bindsym $mod+m exec --no-startup-id apple-music-for-linux;focus
 bindsym control+mod1+g exec --no-startup-id chromium;focus
 
 # Text Editor
@@ -547,6 +554,7 @@ for_window [class="^Gpick$"] floating enable
 for_window [class="Hexchat"] floating disable
 for_window [class="Imagewriter"] floating enable
 for_window [class="Font-manager"] floating enable
+for_window [class="matplotlib"] floating enable
 # for_window [class="qt5ct|Lxappearance] floating enable
 for_window [class="Nitrogen"] floating disable
 for_window [class="Pavucontrol"] floating disable
@@ -801,7 +809,7 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
     # Window color settings
     # class                 border  backgr. text    indicator
-    client.focused          #ff22ff #ffffa9 #e5e5e5 #ffffa9
+    client.focused          #ff22ff #7E9CD8 #e5e5e5 #7E9CD8
     client.unfocused        #222222 #222222 #aaaaaa #222222
     client.focused_inactive #222222 #222222 #a9a9a9 #222222
     client.placeholder      #222222 #222222 #aaaaaa #222222
@@ -858,7 +866,7 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 # get the mouse out of the way with unclutter
 # exec --no-startup-id unclutter
 
-exec_always --no-startup-id ~/.config/polybar/darkplus/launch.sh &
+exec_always --no-startup-id ~/.config/polybar/vimlike/launch.sh &
 exec_always --no-startup-id python ~/Scripts/Lol_schedule/lol_schedule.py &
 exec_always --no-startup-id ~/Code/orgnoti/orgnoti &
 
