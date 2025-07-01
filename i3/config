@@ -869,5 +869,6 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 exec_always --no-startup-id ~/.config/polybar/vimlike/launch.sh &
 exec_always --no-startup-id python ~/Scripts/Lol_schedule/lol_schedule.py &
 exec_always --no-startup-id ~/Code/orgnoti/orgnoti &
+exec_always --no-startup-id /usr/bin/nextcloud --background
 
 for_window [class="^mpv"] floating enable, move position 3300 px 50 px, resize set 500 px 300 px
