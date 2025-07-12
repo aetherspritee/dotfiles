@@ -154,7 +154,7 @@ bindsym $mod+Shift+c reload
 ################# Stopping an application          
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+q exec --no-startup-id ~/Scripts/kill_menu.sh
 bindsym $mod+q kill
 
 ################# Moving around in i3              
