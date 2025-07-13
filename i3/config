@@ -238,7 +238,8 @@ bindsym $mod+Shift+j exec --no-startup-id /usr/local/bin/anki
 bindsym $mod+Shift+l exec --no-startup-id ~/Scripts/lofi.sh
 bindsym $mod+Shift+t exec --no-startup-id ~/Scripts/cozyness.sh --play
 bindsym $mod+Shift+m exec --no-startup-id ~/Scripts/rofi-files.sh
-bindsym $mod+Shift+p exec --no-startup-id ~/Scripts/rofi-papers.sh
+bindsym $mod+Shift+p exec --no-startup-id ~/Scripts/rofi-books.sh
+bindsym $mod+p exec --no-startup-id ~/Scripts/rofi-papers.sh
 bindsym $mod+Shift+a exec --no-startup-id flatpak run com.github.geigi.cozy
 bindsym Mod1+l exec --no-startup-id ~/Scripts/jisho_api.sh
 # focus the child container
