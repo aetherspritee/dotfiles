@@ -1,14 +1,30 @@
+# first things  first
 setxkbmap -option caps:escape
 autoload -Uz compinit
 autoload -Uz colors && colors
 
+# faster repeating keystrokes
 xset r rate 210 40
 
+# tha prompt
 PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}  : "
+
+# the only necessary plugin
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-alias ls="ls --color=auto"
+
+# vim binds
 bindkey -v
-bindkey "^R" history-incremental-search-backward
+bindkey "^R" history-incremental-search-backward # but keep this as it is
+
+# path shenanigans
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-(cat ~/.cache/wal/sequences &)
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:~/.cargo/bin
+
+# pywal support
+cat /home/yulivee/.cache/wal/sequences
+
+# aliases
+alias ls="exa --icons"
+alias vim="nvim"
+alias tms="tmux new -s"
+alias tma="tmux attach"
