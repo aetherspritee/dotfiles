@@ -15,8 +15,9 @@ else
   run sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc &
 fi
 
-feh --bg-fill ~/Wallpapers/gruvbox_girl_dark.png
-feh --bg-fill ~/Wallpapers/gruvbox_palms.png
+# feh --bg-fill ~/Wallpapers/gruvbox_girl_dark.png
+# feh --bg-fill ~/Wallpapers/gruvbox_palms.png
+feh --bg-fill ~/Nextcloud/Wallpapers/forest.jpg
 
 export ZDOTDIR=$HOME/.config/zsh
 #dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
@@ -27,13 +28,15 @@ xsetroot -cursor_name left_ptr &
 #run xfce4-power-manager &
 #numlockx on &
 #blueberry-tray &
-picom --config $HOME/.config/picom/picom.conf &
+# picom --config $HOME/.config/picom/picom.conf &
 run dropbox &
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 #run volumeicon &
 run dropbox &
 run dunst &
 emacs --daemon &
+
+run /usr/bin/nextcloud --background &
 
 setxkbmap -option caps:escape
 

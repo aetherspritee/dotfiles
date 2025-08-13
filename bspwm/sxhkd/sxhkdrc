@@ -11,7 +11,7 @@
 
 #Browser
 super + w
-    brave	
+    zen-browser
 
 #Logout
 super + x
@@ -35,7 +35,7 @@ super + z
 
 #Apple Music
 super + m
-      cider
+      apple-music-for-linux
 
 #Culture
 super + a

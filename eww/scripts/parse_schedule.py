@@ -102,6 +102,7 @@ def main():
                     live_match[0]["diff2"] = "LIVE!"
 
     upcoming_matches = upcoming_matches[::-1]
+    # print(f"{upcoming_matches = }")
     if len(live_match) == 0:
         pass
     elif abs(live_match[0]["diff"]) < 2*60*60:
