@@ -9,8 +9,6 @@ xset r rate 210 40
 # tha prompt
 PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}  : "
 
-# the only necessary plugin
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # vim binds
 bindkey -v
@@ -28,3 +26,18 @@ alias ls="exa --icons"
 alias vim="nvim"
 alias tms="tmux new -s"
 alias tma="tmux attach"
+
+zle-keymap-select () {
+    if [[ $KEYMAP == vicmd ]]; then
+        # the command mode for vi
+        echo -ne "\e[2 q"
+    else
+        # the insert mode for vi
+        echo -ne "\e[5 q"
+    fi
+}
+precmd_functions+=(zle-keymap-select)
+zle -N zle-keymap-select
+
+# the only necessary plugin
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
